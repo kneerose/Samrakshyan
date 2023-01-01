@@ -1,8 +1,1 @@
-{
-  "../containers/home.tsx -> ../components/wavesurfer/waveform": {
-    "id": "../containers/home.tsx -> ../components/wavesurfer/waveform",
-    "files": [
-      "static/chunks/src_components_wavesurfer_waveform_tsx.js"
-    ]
-  }
-}
+{}

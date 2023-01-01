@@ -1,1 +1,1 @@
-self.__REACT_LOADABLE_MANIFEST={"../containers/home.tsx -> ../components/wavesurfer/waveform":{"id":"../containers/home.tsx -> ../components/wavesurfer/waveform","files":["static/chunks/src_components_wavesurfer_waveform_tsx.js"]}}
+self.__REACT_LOADABLE_MANIFEST={}
