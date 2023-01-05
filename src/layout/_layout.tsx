@@ -4,6 +4,7 @@ import React from "react";
 import useWindowScroll from "react-use/lib/useWindowScroll";
 import { useIsMounted } from "../lib/hooks/use-is-mounted";
 import Logo from "../assets/images/logo.png";
+import { customLoader } from "../utils/customLoaderUtils";
 
 export function Header() {
   const windowScroll = useWindowScroll();
@@ -23,7 +24,13 @@ export function Header() {
         }}
         className="flex items-center space-x-5 cursor-pointer"
       >
-        <Image alt="favicon" src={Logo} height={45} width={45}></Image>
+        <Image
+          alt="favicon"
+          src={Logo}
+          height={45}
+          width={45}
+          loader={customLoader}
+        />
         <p className="text-md lg:text-xl sl:text-xl font-bold">
           संरक्षण : An Endangered Birds Recognition Portal
         </p>

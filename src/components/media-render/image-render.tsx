@@ -2,6 +2,7 @@ import React from "react";
 import cn from "classnames";
 import styled from "@emotion/styled";
 import Image, { StaticImageData } from "next/image";
+import { customLoader } from "../../utils/customLoaderUtils";
 
 interface IImageRenderer {
   imageSrc: any;
@@ -20,6 +21,7 @@ export default function ImageRenderer({
       placeholder="blur"
       loading="lazy"
       height={500}
+      loader={customLoader}
       width={500}
       className="w-full h-full object-cover"
       referrerPolicy="no-referrer"

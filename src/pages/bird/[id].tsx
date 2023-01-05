@@ -1,4 +1,4 @@
-import { GetServerSideProps, InferGetServerSidePropsType } from "next";
+import { GetStaticProps, InferGetStaticPropsType } from "next";
 import React, { useEffect } from "react";
 import ImageRenderer from "../../components/media-render/image-render";
 import Layout from "../../layout/_layout";
@@ -9,9 +9,10 @@ import { birdDetails } from "../../constants/bird-details";
 import { BirdDetailDtos } from "../../models/dtos/bird-detail";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import remarkBreaks from "remark-breaks";
-import { useRouter } from "next/router";
-export const getServerSideProps: GetServerSideProps = async (context: any) => {
-  const { id } = context.query;
+
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const id = params.id;
+  debugger;
   const birdDetail = birdDetails.filter(bird);
   function bird(birdDetail) {
     if (birdDetail.id === id) {
@@ -29,13 +30,30 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
   if (!birdDetail) return { notFound: true };
   return { props: { birdDetail } };
 };
+
+export async function getStaticPaths() {
+  const paths = birdDetails.map((birdDetail) => {
+    return {
+      params: {
+        id: birdDetail.id,
+      },
+    };
+  });
+  console.log("paths", paths);
+  return {
+    paths,
+    fallback: false, // can also be true or 'blocking'
+  };
+}
+
 interface IBirdProps {
   birdDetail: Array<BirdDetailDtos>;
 }
 
 const Bird: NextPageWithLayout<
-  InferGetServerSidePropsType<typeof getServerSideProps>
+  InferGetStaticPropsType<typeof getStaticProps>
 > = ({ birdDetail }: IBirdProps) => {
+  debugger;
   return (
     <div className="w-full h-full">
       <div className="grid grid-cols-1 gap-16 md:grid-cols-2">

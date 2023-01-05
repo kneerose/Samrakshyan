@@ -12,9 +12,8 @@ export const birdDetails = [
     name: "Spiny Babbler",
     imageUrl:
       "https://drive.google.com/uc?export=view&id=1WGnTBzJG3syg8ONLOPkJXO0O6EIWkGQn",
-    description: `
-    The Spiny Babbler (Turdoides nipalensis) is a species of bird in the Leiothrichidae family. It is found in Bhutan, India, Myanmar, Nepal, and Thailand. Its natural habitats are temperate forests, subtropical or tropical moist lowland forests, and subtropical or tropical moist montane forests. It is threatened by habitat loss.
-    
+    description: `The Spiny Babbler (Turdoides nipalensis) is a species of bird in the Leiothrichidae family. It is found in Bhutan, India, Myanmar, Nepal, and Thailand. Its natural habitats are temperate forests, subtropical or tropical moist lowland forests, and subtropical or tropical moist montane forests. It is threatened by habitat loss.
+
     \n &nbsp; \nThe Spiny Babbler is a medium-sized bird that is usually found in small family groups of two to ten individuals. It typically has a long tail, greyish-brown upperparts, and a white throat and breast. The head is black with a white patch near the bill. Its diet consists mainly of insects, fruits, and seeds.
     
     \n &nbsp; \nThe Spiny Babbler is an important species in its range as it helps to disperse seeds and control insect populations. It is also an important cultural symbol in its range, with many legends and stories about it.`,
