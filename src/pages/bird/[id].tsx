@@ -1,57 +1,55 @@
-import styled from "@emotion/styled";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
-import Image from "next/image";
-import React from "react";
+import React, { useEffect } from "react";
+import ImageRenderer from "../../components/media-render/image-render";
 import Layout from "../../layout/_layout";
 import { NextPageWithLayout } from "../../types";
 import { getDescriptionsList, getImage } from "../../utils/openai";
+import AudioRenderer from "../../components/media-render/audio-render";
+import { birdDetails } from "../../constants/bird-details";
+import { BirdDetailDtos } from "../../models/dtos/bird-detail";
+import { ReactMarkdown } from "react-markdown/lib/react-markdown";
+import remarkBreaks from "remark-breaks";
+import { useRouter } from "next/router";
 export const getServerSideProps: GetServerSideProps = async (context: any) => {
   const { id } = context.query;
-  let descriptions;
-  let image;
-  try {
-    descriptions = await getDescriptionsList(id);
-  } catch (e) {}
-  try {
-    image = await getImage(id);
-  } catch (e) {}
-  if (!descriptions) return { notFound: true };
-  return { props: { descriptions, id, image } };
+  const birdDetail = birdDetails.filter(bird);
+  function bird(birdDetail) {
+    if (birdDetail.id === id) {
+      return birdDetail;
+    }
+  }
+  // let descriptions;
+  // let image;
+  // try {
+  //   descriptions = await getDescriptionsList(id);
+  // } catch (e) {}
+  // try {
+  //   image = await getImage(id);
+  // } catch (e) {}
+  if (!birdDetail) return { notFound: true };
+  return { props: { birdDetail } };
 };
+interface IBirdProps {
+  birdDetail: Array<BirdDetailDtos>;
+}
 
 const Bird: NextPageWithLayout<
   InferGetServerSidePropsType<typeof getServerSideProps>
-> = ({ descriptions, id, image }) => {
-  console.log(descriptions);
-  const ImageDiv = styled.img`
-    height: auto;
-    width: 100%;
-    background-size: cover;
-    background-position: center;
-    overflow: hidden;
-    object-fit: cover;
-  `;
-
+> = ({ birdDetail }: IBirdProps) => {
   return (
-    <div className="mx-auto w-full h-full transition-all">
-      <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-        <div className="relative h-full max-h-auto w-full pb-4 md:mt-4 rounded-lg">
-          <ImageDiv
-            src={image}
-            className="w-full h-full object-cover"
-            alt={id}
-          />
-          ;
+    <div className="w-full h-full">
+      <div className="grid grid-cols-1 gap-16 md:grid-cols-2">
+        <div className=" overflow-hidden aspect-square rounded-lg">
+          <ImageRenderer imageSrc={birdDetail[0].imageUrl} isCardView={false} />
         </div>
-        <div className="mt-2">
-          <p className="text-3xl">{id}</p>
-          {descriptions.map((description) => {
-            return (
-              <p key={description} className="my-3">
-                {description}
-              </p>
-            );
-          })}
+        <div className="mt-2 space-y-8">
+          <p className="text-3xl font-medium">{birdDetail[0].name}</p>
+          <AudioRenderer audioSrc={birdDetail[0].audioUrl} />
+          <ReactMarkdown
+            remarkPlugins={[remarkBreaks]}
+            className="my-3"
+            children={birdDetail[0].description}
+          />
         </div>
       </div>
     </div>

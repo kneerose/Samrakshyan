@@ -3,9 +3,11 @@ import Router from "next/router";
 import nProgress from "nprogress";
 import { Provider } from "react-redux";
 import { store } from "../store/store";
+import Logo from "../assets/images/logo.png";
 import { NextPageWithLayout } from "../types";
 import { AppProps } from "next/app";
-import { NextSeo } from "next-seo";
+import Head from "next/head";
+import NextNProgress from "../components/ui/nprocess";
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
 };
@@ -18,20 +20,22 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   });
   const getLayout = Component.getLayout ?? ((page) => page);
   return (
-    <div>
-      <NextSeo title="संरक्षण" />
+    <>
+      <Head>
+        <title>संरक्षण</title>
+        <link rel="shortcut icon" href="/favicon.ico" />
+      </Head>
+      <NextNProgress
+        color="#f04444"
+        startPosition={0}
+        stopDelayMs={400}
+        height={5}
+        options={{ easing: "ease" }}
+      />
       <Provider store={store}>
         {getLayout(<Component {...pageProps} />)}
       </Provider>
-    </div>
+    </>
   );
 }
-
-// MyApp.getInitialProps = async ({ Component, ctx }) => {
-//   let pageProps = {};
-//   if (Component.getInitialProps) {
-//     pageProps = await Component.getInitialProps(ctx);
-//   }
-//   return { pageProps };
-// };
 export default MyApp;

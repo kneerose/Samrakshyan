@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from "react";
 
 export default function Reload() {
   useEffect(() => {
-    window.location.replace('/');
+    window.location.replace("/");
   }, []);
   return <div />;
 }

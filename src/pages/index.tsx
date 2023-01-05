@@ -3,11 +3,7 @@ import React from "react";
 import Layout from "../layout/_layout";
 import Homecontainer from "../containers/home";
 const Home = () => {
-  return (
-    <div>
-      <Homecontainer />
-    </div>
-  );
+  return <Homecontainer />;
 };
 
 Home.getLayout = function getLayout(

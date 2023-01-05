@@ -1,1 +1,1 @@
-self.__REACT_LOADABLE_MANIFEST={}
+self.__REACT_LOADABLE_MANIFEST={"../components/wavesurfer/waveform.tsx -> wavesurfer.js":{id:1796,files:["static/chunks/925e0f50.8c6d73c891925acc.js"]},"../containers/home.tsx -> ../components/wavesurfer/waveform":{id:5138,files:["static/chunks/1bfc9850-4a75a2f0bf1c3b54.js","static/chunks/229-950201124e35d6ae.js","static/chunks/138.cad333ae71f8c63a.js"]}};

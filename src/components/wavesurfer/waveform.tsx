@@ -1,8 +1,7 @@
 import Button from "../ui/button/button";
-import Wavesurfer from "wavesurfer.js";
 import { useEffect, useRef, useState } from "react";
 import { useIsMounted } from "../../lib/hooks/use-is-mounted";
-import PlayerCard from "../playercard";
+import AudioPlayerCard from "../audioplayer-card";
 // import { Flex, Button } from "@chakar-ui/react";
 
 const Waveform = () => {
@@ -21,33 +20,38 @@ const Waveform = () => {
       setPosition("Play");
     }
   };
-  const getWaveformComponent= ()=>{
-   return <div id="waveform" className={isAudio?"visible":"hidden"}/>;
-  }
+  const getWaveformComponent = () => {
+    return <div id="waveform" className={isAudio ? "visible" : "hidden"} />;
+  };
   useEffect(() => {
     // Check if wavesurfer object is already created.
-    if (!waveform.current) {
-      // Create a wavesurfer object
-      waveform.current = Wavesurfer.create({
-        barWidth: 3,
-        barRadius: 3,
-        barGap: 2,
-        barMinHeight: 1,
-        barHeight: 20,
-        cursorWidth: 1,
-        container: "#waveform",
-        backend: "MediaElement",
-        height: 200,
-        progressColor: "#4353FF",
-        responsive: true,
-        waveColor: "#567FFF",
-        cursorColor: "#567FFF",
-      });
+    const initProcess = async () => {
+      const WaveSurfer = (await import("wavesurfer.js")).default;
+      if (!waveform.current) {
+        // Create a wavesurfer object
+        debugger;
+        waveform.current = WaveSurfer.create({
+          barWidth: 3,
+          barRadius: 3,
+          barGap: 2,
+          barMinHeight: 1,
+          barHeight: 20,
+          cursorWidth: 1,
+          container: "#waveform",
+          backend: "MediaElement",
+          height: 200,
+          progressColor: "#4353FF",
+          responsive: true,
+          waveColor: "#567FFF",
+          cursorColor: "#567FFF",
+        });
+      }
       // waveform.current.load("/spinybabbler.mp3");
-    }
+    };
+    initProcess();
   }, []);
   return (
-    <div className="w-full pt-10">
+    <div className="flex flex-col w-full space-y-10 items-center justify-center pt-10">
       <div className="flex justify-center">
         <input
           type="file"
@@ -56,14 +60,14 @@ const Waveform = () => {
           ref={(fileinput) => (fileInput = fileinput)}
           onChange={createWaveform}
         />
-          <Button
-            text="Import Sound"
-            onClickHandler={() => fileInput.click()}
-            className="bg-buttonColor text-white"
-            icon={undefined}
-          />
+        <Button
+          text="Import Sound"
+          onClickHandler={() => fileInput.click()}
+          className="bg-buttonColor text-white"
+          icon={undefined}
+        />
       </div>
-      <PlayerCard
+      <AudioPlayerCard
         waveform={waveform}
         setPosition={setPosition}
         currentPosition={currentPosition}
