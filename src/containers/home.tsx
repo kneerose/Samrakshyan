@@ -5,11 +5,17 @@ import { ArrowRightCircle } from "../components/icons/arrow-right-circle";
 import { useRouter } from "next/router";
 import BirdList from "../components/bird-list";
 import { customLoader } from "../utils/customLoaderUtils";
+import {
+  useGetAllBirdDetailsQuery,
+  // useGetMediaByPathQuery,
+} from "../store/bird/api";
 const Waveform = dynamic(() => import("../components/wavesurfer/waveform"), {
   ssr: false,
 });
 export default function Homecontainer() {
   const router = useRouter();
+  // const { data } = useGetAllBirdDetailsQuery();
+  // console.log(data);
   return (
     <div className=" lg:space-y-28 sm:space-y-12">
       <div className="flex lg:flex-row sm:flex-col w-full h-full lg:mt-24 sm:mt-5 lg:px-20 sm:px-4 justify-center  sm:space-y-16 lg:space-y-0 lg:space-x-32 sm:space-x-0 items-center">

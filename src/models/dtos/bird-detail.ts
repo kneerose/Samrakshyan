@@ -1,7 +1,7 @@
 export interface BirdDetailDtos {
-  name: string;
-  imageUrl: string;
+  bird_name: string;
+  image_path: string;
   description: string;
-  audioUrl: string;
+  audio_path: string;
   id: string;
 }

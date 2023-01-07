@@ -2,6 +2,7 @@ import Button from "../ui/button/button";
 import { useEffect, useRef, useState } from "react";
 import { useIsMounted } from "../../lib/hooks/use-is-mounted";
 import AudioPlayerCard from "../audioplayer-card";
+import cn from "classnames";
 // import { Flex, Button } from "@chakar-ui/react";
 
 const Waveform = () => {
@@ -21,7 +22,9 @@ const Waveform = () => {
     }
   };
   const getWaveformComponent = () => {
-    return <div id="waveform" className={isAudio ? "visible" : "hidden"} />;
+    return (
+      <div id="waveform" className={cn("", isAudio ? "visible" : "hidden")} />
+    );
   };
   useEffect(() => {
     // Check if wavesurfer object is already created.
@@ -29,7 +32,6 @@ const Waveform = () => {
       const WaveSurfer = (await import("wavesurfer.js")).default;
       if (!waveform.current) {
         // Create a wavesurfer object
-        debugger;
         waveform.current = WaveSurfer.create({
           barWidth: 3,
           barRadius: 3,
@@ -51,7 +53,7 @@ const Waveform = () => {
     initProcess();
   }, []);
   return (
-    <div className="flex flex-col w-full space-y-10 items-center justify-center pt-10">
+    <div className="flex flex-col w-full space-y-8 items-center justify-center pt-10">
       <div className="flex justify-center">
         <input
           type="file"

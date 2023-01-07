@@ -5,12 +5,14 @@ import { SpeakerWave } from "../icons/speaker-wave";
 import ImageRenderer from "../media-render/image-render";
 import cn from "classnames";
 import { SpeakerXMark } from "../icons/speaker-x-mark";
+import environments from "@app/configs/environments";
 
 interface IBirdCardProps {
-  birdDetail: BirdDetailDtos;
+  birdDetail: any;
 }
 
 export default function BirdCard({ birdDetail }: IBirdCardProps) {
+  // "http://localhost:8000/media?media_path=s3/image/spiny_babbler.jpg"
   const router = useRouter();
   const [isPlaying, changeAudioStatus] = useState(false);
   const myRef = useRef(null);
@@ -36,11 +38,18 @@ export default function BirdCard({ birdDetail }: IBirdCardProps) {
           router.push(`bird/${birdDetail.id}`);
         }}
       >
-        <ImageRenderer isCardView imageSrc={birdDetail.imageUrl} />
+        <ImageRenderer
+          isCardView
+          // imageSrc={`${environments.API_URL}/media?media_path=${birdDetail.image_path}`}
+          imageSrc={birdDetail.imageUrl}
+        />
       </div>
       <div className=" flex bg-white absolute bottom-0 items-center justify-between px-6 left-0 space-x-4 right-0 text-center">
         <p className="font-medium py-4">{birdDetail.name}</p>
-        <audio ref={myRef} src={birdDetail.audioUrl} />
+        <audio
+          ref={myRef}
+          src={`${environments.API_URL}/media?media_path=${birdDetail.audio_path}`}
+        />
         {isPlaying ? (
           <SpeakerWave
             onClick={pauseAudio}
