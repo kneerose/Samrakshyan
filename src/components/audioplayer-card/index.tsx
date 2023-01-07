@@ -28,8 +28,9 @@ export default function AudioPlayerCard({
 }: IPlayerCard) {
   const [value, setValue] = useState<string>();
   const [isLoading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const [postFileString] = usePostPredictionResponseMutation();
-  function bird(birdDetail: BirdDetailDtos) {
+  function bird(birdDetail) {
     if (birdDetail.name === value) {
       return birdDetail;
     }
@@ -51,28 +52,46 @@ export default function AudioPlayerCard({
     waveform.current.stop();
     setPosition("Stop");
   };
+  const onClickHandler = async () => {
+    debugger;
+    setLoading(true);
+    const res = await postFileString(JSON.stringify(file));
+    if (res && "data" in res) {
+      setValue(res.data.Predicted);
+      setLoading(false);
+    } else if (res && "error" in res) {
+      setLoading(false);
+      setError(res.error["error"]);
+    } else {
+      setLoading(false);
+    }
+    // setTimeout(() => {
+    //   setValue(birdDetails[parseInt(`${Math.random() * 7}`)].name);
+    //   setLoading(false);
+    // }, 2000);
+  };
 
   return (
-    <div className="lg:w-[600px] sm:w-full   space-y-5  ">
-      {isAudio && (
-        <div className="flex flex-col items-end">
-          <button
-            onClick={() => {
-              setAudio(false);
-              setPosition("");
-              setValue(null);
-              waveform.current.stop();
-            }}
-            className="py-3 px-3"
-          >
-            <FaTimes className="h-8 w-4 text-lightBlackColor"></FaTimes>
-          </button>
-        </div>
-      )}
-      {waveformComponent}
-      {isAudio && (
-        <div className="space-y-5">
-          <div className="flex justify-between px-5">
+    <div className="flex flex-col items-center w-full space-y-5 justify-center">
+      <div className="lg:w-[600px] sm:w-full  space-y-5  ">
+        {isAudio && (
+          <div className="flex flex-col items-end">
+            <button
+              onClick={() => {
+                setAudio(false);
+                setPosition("");
+                setValue(null);
+                waveform.current.stop();
+              }}
+              className="py-3 px-3"
+            >
+              <FaTimes className="h-8 w-4 text-lightBlackColor"></FaTimes>
+            </button>
+          </div>
+        )}
+        {waveformComponent}
+        {isAudio && (
+          <div className="flex  justify-between px-5">
             <Button
               text={currentPosition == "Play" ? "Pause" : "Play"}
               onClickHandler={handlePlay}
@@ -114,40 +133,54 @@ export default function AudioPlayerCard({
               }
             />
           </div>
-          <div className="flex  justify-center">
-            <Button
-              text="Predict the sound"
-              className="bg-gray-400"
-              onClickHandler={async () => {
-                setLoading(true);
-                // const res = await postFileString(JSON.stringify(file));
-                // if (res && "data" in res) {
-                //   setValue(res.data.Predicted);
-                //   setLoading(false);
-                // }
-                setTimeout(() => {
-                  setValue(birdDetails[parseInt(`${Math.random() * 7}`)].name);
-                  setLoading(false);
-                }, 2000);
-              }}
-              icon={undefined}
-            />
-          </div>
-          {isLoading ? (
-            <div className="flex pt-2 justify-center">
-              <CircularProgress size={40} />
-            </div>
-          ) : (
-            value && (
-              <div className="flex flex-col items-center space-y-6">
-                <p className=" pt-2 text-center">{value} </p>
-                <div className="h-[400px] w-[300px]">
-                  <BirdCard birdDetail={birdDetails.filter(bird)[0]} />
-                </div>
-              </div>
-            )
-          )}
+        )}
+      </div>
+      {isAudio && (
+        <p className="mt-5 text-xl font-medium">
+          You can get information about recorded Bird sound using listed models
+        </p>
+      )}
+      {isAudio && (
+        <div className="flex lg:flex-row sm:flex-col lg:space-y-0 sm:space-y-5 mt-8 w-full justify-center space-x-10">
+          <Button
+            text="Model I"
+            className="bg-gray-400"
+            onClickHandler={onClickHandler}
+            icon={undefined}
+          />
+          <Button
+            text="Model II"
+            className="bg-gray-400"
+            onClickHandler={onClickHandler}
+            icon={undefined}
+          />
+          <Button
+            text="Model III"
+            className="bg-gray-400"
+            onClickHandler={onClickHandler}
+            icon={undefined}
+          />
+          <Button
+            text="Model Ensemble"
+            className="bg-gray-400"
+            onClickHandler={onClickHandler}
+            icon={undefined}
+          />
         </div>
+      )}
+      {isLoading ? (
+        <div className="flex pt-5 justify-center">
+          <CircularProgress size={40} />
+        </div>
+      ) : value ? (
+        <div className="flex flex-col items-center space-y-6">
+          <p className=" pt-2 text-center">{value} </p>
+          <div className="h-[400px] w-[300px]">
+            <BirdCard birdDetail={birdDetails.filter(bird)[0]} />
+          </div>
+        </div>
+      ) : (
+        error !== "" && <p className="text-lg text-red-600">{error}</p>
       )}
     </div>
   );

@@ -1,10 +1,7 @@
 {
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
-  "/[empty]": "pages/[empty].html",
-  "/": "pages/index.html",
-  "/predict": "pages/predict.html",
   "/_document": "pages/_document.js",
-  "/bird/[id]": "pages/bird/[id].js",
-  "/404": "pages/404.html"
+  "/[empty]": "pages/[empty].js",
+  "/predict": "pages/predict.js"
 }

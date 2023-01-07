@@ -1,14 +1,5 @@
 export const birdDetails = [
   {
-    name: "House Crow",
-    imageUrl:
-      "https://drive.google.com/uc?export=view&id=1RxSRqnazvRSvr-64Mo-aUGHCptUr1zNM",
-    description: `House crows (Corvus splendens) are a species of crow native to South and Southeast Asia. They are about the size of the American crow, with black feathers and a grey-black bill. They are very adaptable birds, and can be found in a variety of habitats, including urban areas. They are omnivorous, and feed on a variety of foods, including insects, small mammals, seeds, and scraps of human food. They are also known to take eggs and nestlings of other birds. They are highly social birds, often found in large flocks.`,
-    audioUrl:
-      "https://drive.google.com/uc?export=view&id=11Yg1o_Zw8mt-cNpxPvoChlIR9AKcioEL",
-    id: "7deb9b6d-9549-43e3-b7ee-a354680c9dd1",
-  },
-  {
     name: "Spiny Babbler",
     imageUrl:
       "https://drive.google.com/uc?export=view&id=1WGnTBzJG3syg8ONLOPkJXO0O6EIWkGQn",
@@ -21,19 +12,7 @@ export const birdDetails = [
       "https://drive.google.com/uc?export=view&id=1pphASxKBaf7ab1F3kgNk11iJ7Y54zfST",
     id: "7deb9b6d-9549-43e3-b7ee-a354680c9dd2",
   },
-  {
-    name: "House Sparrow",
-    imageUrl:
-      "https://drive.google.com/uc?export=view&id=1sPQt0F7UHT74qHkowAItFLDaB3DeuZZT",
-    description: `House Sparrows are small, plump, seed-eating birds, typically found in urban and suburban areas. They are members of the family Passeridae, which includes all "true" sparrows. House Sparrows are native to Europe, Asia, and parts of North Africa, but have been introduced to many other parts of the world, including North America. They are the most widely distributed and abundant wild bird species in the world.
 
-    \n &nbsp; \nHouse Sparrows are generally brown above, with black and white markings on their wings and tail. The underside of the bird is usually gray or white. They have a distinctive black patch on their throat and cheeks, and a white line above each eye. They have a short, conical bill, which is adapted to eating seeds.
-    
-    \n &nbsp; \nHouse Sparrows are social birds, often living in large flocks and breeding in colonies. They are omnivorous, eating both seeds and insects. They usually build nests in crevices or cavities in buildings and other structures, but they are also known to nest in trees and shrubs. House Sparrows are commonly seen in urban and suburban areas, and are also found in agricultural areas and grasslands.`,
-    audioUrl:
-      "https://drive.google.com/uc?export=view&id=1anZBZNTM28oeJuar6DrMpojcXirKj3VB",
-    id: "7deb9b6d-9549-43e3-b7ee-a354680c9dd3",
-  },
   {
     name: "Indian Spotted Eagle",
     imageUrl:
@@ -74,5 +53,75 @@ export const birdDetails = [
     audioUrl:
       "https://drive.google.com/uc?export=view&id=1wrpqR1uSTpBbnWnXZtk8-J-13bSGo592",
     id: "7deb9b6d-9549-43e3-b7ee-a354680c9dd6",
+  },
+  {
+    name: "Rufous-necked Hornbill",
+    imageUrl:
+      "https://drive.google.com/uc?export=view&id=1XehHYTjtBjzO7HN3S0SaFAQqFaaHhvFc",
+    description: `The Rufous-necked Hornbill (Aceros nipalensis) is a large, brightly colored bird native to tropical southeastern Asia. It is a member of the Bucerotidae family, which includes the hornbills. The Rufous-necked Hornbill is one of the largest species in the family and can reach lengths of up to 90 cm (35 in). They have a black body and wings with a white tail and distinctive rufous-colored neck and head. The bill is black with a yellow tip. Males and females are similar in size and coloration.
+
+    \n &nbsp; \nRufous-necked Hornbills feed primarily on fruit and insects and are often seen foraging in trees and on the ground. They are known to form monogamous pairs and can be seen nesting in cavities in trees. The female will seal herself inside the nest with a wall of mud, leaving only a small opening for the male to pass food to her and the young. Rufous-necked Hornbills are considered vulnerable due to habitat loss and hunting. They are protected under CITES Appendix I.`,
+    audioUrl:
+      "https://drive.google.com/uc?export=view&id=1rb7OT2YebRt_3DrxKV3__IVOPOzeY_6P",
+    id: "7deb9b6d-9549-43e3-b7ee-a354680c9dd10",
+  },
+  {
+    name: "Jerdon's Babbler",
+    imageUrl:
+      "https://drive.google.com/uc?export=view&id=13_xWhUFT9lYw_rSIfy-Q-plF0ljSrpok",
+    description: `Jerdon's Babbler (Malacocincla jerdoni) is a species of bird in the family Timaliidae. It is found in China, India, and Myanmar. Its natural habitats are subtropical or tropical moist lowland forests and subtropical or tropical moist montane forests.
+
+    \n &nbsp; \nThe Jerdon's Babbler is a medium-sized bird measuring about 18 cm (7.1 in) in length. It has a brown plumage with white streaks on its upperparts and a white underparts. It has a long, pointed bill and a white-tipped tail. Its call is a loud, repeated "hoo-hoo-hoo". The species feeds mainly on insects, but also eats small fruits and seeds.
+    
+    \n &nbsp; \nThe Jerdon's Babbler is threatened by habitat destruction and degradation due to logging and agricultural activities. It is listed as Near Threatened on the IUCN Red List.`,
+    audioUrl:
+      "https://drive.google.com/uc?export=view&id=1wpI3wSCmOwkR7uOF6fVK6XVF53vuSFjU",
+    id: "7deb9b6d-9549-43e3-b7ee-a354680c9dd7",
+  },
+  {
+    name: "Rose-ringed Parakeet",
+    imageUrl:
+      "https://drive.google.com/uc?export=view&id=1An2hwNjSNyhcbvmhrhjRAZ4gKcHQv2MA",
+    description: ` Rose-ringed Parakeet (Psittacula krameri) is a medium-sized parrot in the genus Psittacula, of the family Psittacidae. It has a very wide range and is the only parrot that is found in both wild and domesticated forms. The wild form is partially migratory and can be found from Africa to South Asia, while the domesticated form is found worldwide.
+
+    \n &nbsp; \nThe Rose-ringed Parakeet is green with black and yellow markings on the wings and tail. The wild form has a black ring around the neck, while the domesticated form may have either a black or a yellow ring. The beak is black, and the eyes are yellow. Males have a red beak and red rings around their necks, while females have a black beak and black rings.
+    
+    \n &nbsp; \nThe Rose-ringed Parakeet is an adaptable species and can live in a variety of habitats, including woodlands, urban areas, and agricultural landscapes. It feeds mainly on fruits, seeds, and buds, but it will also eat insects and other small animals.`,
+    audioUrl:
+      "https://drive.google.com/uc?export=view&id=1a31CaAqM8DSZ5O-vvWgHVVyw23IeU-qf",
+    id: "7deb9b6d-9549-43e3-b7ee-a354680c9dd8",
+  },
+  {
+    name: "Wood Snipe",
+    imageUrl:
+      "https://drive.google.com/uc?export=view&id=10KoTqYd47V9igRwjgM-fIOHuBpc_UJbz",
+    description: `The Wood Snipe (Gallinago nemoricola) is a large, medium-sized bird of the sandpiper family. It is an uncommon winter visitor to the Indian subcontinent and is found in open grassy habitats, along with open cultivated areas. It has a long, medium-sized body, with a medium-length bill and short legs. The upperparts are greyish-brown, and the underparts are white. The head is greyish-brown with a white throat, and the wings are barred with white and black. The tail is medium-long, and the legs are yellowish.
+
+    \n &nbsp; \nThe Wood Snipe feeds on small invertebrates, such as worms, beetles, and flies, as well as on seeds and grains. It is usually found in pairs or small groups, often foraging in grassy areas. During the breeding season, it displays a distinctive courtship dance, in which the male moves around the female in circles, with a loud "peeping" call. The nest is a small cup, built among grasses or sedges. The eggs are incubated by both parents, and chicks are fed by both parents.`,
+    audioUrl:
+      "https://drive.google.com/uc?export=view&id=1Psg9jCJsq6PXv3zTjDlr24OCndY1wUX8",
+    id: "7deb9b6d-9549-43e3-b7ee-a354680c9dd9",
+  },
+  {
+    name: "House Crow",
+    imageUrl:
+      "https://drive.google.com/uc?export=view&id=1RxSRqnazvRSvr-64Mo-aUGHCptUr1zNM",
+    description: `House crows (Corvus splendens) are a species of crow native to South and Southeast Asia. They are about the size of the American crow, with black feathers and a grey-black bill. They are very adaptable birds, and can be found in a variety of habitats, including urban areas. They are omnivorous, and feed on a variety of foods, including insects, small mammals, seeds, and scraps of human food. They are also known to take eggs and nestlings of other birds. They are highly social birds, often found in large flocks.`,
+    audioUrl:
+      "https://drive.google.com/uc?export=view&id=11Yg1o_Zw8mt-cNpxPvoChlIR9AKcioEL",
+    id: "7deb9b6d-9549-43e3-b7ee-a354680c9dd1",
+  },
+  {
+    name: "House Sparrow",
+    imageUrl:
+      "https://drive.google.com/uc?export=view&id=1sPQt0F7UHT74qHkowAItFLDaB3DeuZZT",
+    description: `House Sparrows are small, plump, seed-eating birds, typically found in urban and suburban areas. They are members of the family Passeridae, which includes all "true" sparrows. House Sparrows are native to Europe, Asia, and parts of North Africa, but have been introduced to many other parts of the world, including North America. They are the most widely distributed and abundant wild bird species in the world.
+
+    \n &nbsp; \nHouse Sparrows are generally brown above, with black and white markings on their wings and tail. The underside of the bird is usually gray or white. They have a distinctive black patch on their throat and cheeks, and a white line above each eye. They have a short, conical bill, which is adapted to eating seeds.
+    
+    \n &nbsp; \nHouse Sparrows are social birds, often living in large flocks and breeding in colonies. They are omnivorous, eating both seeds and insects. They usually build nests in crevices or cavities in buildings and other structures, but they are also known to nest in trees and shrubs. House Sparrows are commonly seen in urban and suburban areas, and are also found in agricultural areas and grasslands.`,
+    audioUrl:
+      "https://drive.google.com/uc?export=view&id=1anZBZNTM28oeJuar6DrMpojcXirKj3VB",
+    id: "7deb9b6d-9549-43e3-b7ee-a354680c9dd3",
   },
 ];

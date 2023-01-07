@@ -2,8 +2,8 @@ import Button from "../ui/button/button";
 import { useEffect, useRef, useState } from "react";
 import { useIsMounted } from "../../lib/hooks/use-is-mounted";
 import AudioPlayerCard from "../audioplayer-card";
+import dynamic from "next/dynamic";
 // import { Flex, Button } from "@chakar-ui/react";
-
 const Waveform = () => {
   const waveform = useRef(null);
   const [isAudio, setAudio] = useState(false);
