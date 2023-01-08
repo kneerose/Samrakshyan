@@ -60,16 +60,19 @@ export default function AudioPlayerCard({
     setLoading(true);
     const formData = new FormData();
     formData.append("file", file);
-    const res = await postFileString(formData);
-    if (res && "data" in res) {
-      setValue(res.data.Predicted);
-      setLoading(false);
-    } else if (res && "error" in res) {
-      setLoading(false);
-      setError(res.error["error"]);
-    } else {
-      setLoading(false);
-    }
+    await postFileString(formData).then((res) => {
+      if (res && "data" in res) {
+        debugger;
+        setValue(res.data.Predicted);
+        setLoading(false);
+      } else if (res && "error" in res) {
+        setLoading(false);
+        setError(res.error["error"]);
+      } else {
+        setLoading(false);
+      }
+    });
+
     // setTimeout(() => {
     //   setValue(birdDetails[parseInt(`${Math.random() * 7}`)].name);
     //   setLoading(false);
@@ -177,7 +180,7 @@ export default function AudioPlayerCard({
         <div className="flex pt-5 justify-center">
           <CircularProgress size={40} />
         </div>
-      ) : value ? (
+      ) : value && isAudio ? (
         <div className="flex flex-col items-center space-y-6">
           <p className=" pt-2 text-center">{value} </p>
           {value !== "Unknown" && birdDetails.filter(bird).length !== 0 && (
@@ -187,7 +190,8 @@ export default function AudioPlayerCard({
           )}
         </div>
       ) : (
-        error !== "" && <p className="text-lg text-red-600">{error}</p>
+        error !== "" &&
+        isAudio && <p className="text-lg text-red-600">{error}</p>
       )}
     </div>
   );
