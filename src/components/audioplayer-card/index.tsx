@@ -3,7 +3,10 @@ import { MutableRefObject, useEffect, useState } from "react";
 import { FaPause, FaPlay, FaStop, FaTimes } from "react-icons/fa";
 import { birdDetails } from "../../constants/bird-details";
 import { BirdDetailDtos } from "../../models/dtos/bird-detail";
-import { usePostPredictionResponseMutation } from "../../store/detail/api";
+import {
+  responseApi,
+  usePostPredictionResponseMutation,
+} from "../../store/detail/api";
 import BirdCard from "../bird-card";
 import Button from "../ui/button/button";
 
@@ -30,8 +33,8 @@ export default function AudioPlayerCard({
   const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [postFileString] = usePostPredictionResponseMutation();
-  function bird(birdDetail) {
-    if (birdDetail.name === value) {
+  function bird(birdDetail: BirdDetailDtos) {
+    if (birdDetail.name.toLowerCase() === value.toLowerCase()) {
       return birdDetail;
     }
   }
@@ -55,7 +58,9 @@ export default function AudioPlayerCard({
   const onClickHandler = async () => {
     debugger;
     setLoading(true);
-    const res = await postFileString(JSON.stringify(file));
+    const formData = new FormData();
+    formData.append("file", file);
+    const res = await postFileString(formData);
     if (res && "data" in res) {
       setValue(res.data.Predicted);
       setLoading(false);
@@ -175,9 +180,11 @@ export default function AudioPlayerCard({
       ) : value ? (
         <div className="flex flex-col items-center space-y-6">
           <p className=" pt-2 text-center">{value} </p>
-          <div className="h-[400px] w-[300px]">
-            <BirdCard birdDetail={birdDetails.filter(bird)[0]} />
-          </div>
+          {value !== "Unknown" && birdDetails.filter(bird).length !== 0 && (
+            <div className="h-[400px] w-[300px]">
+              <BirdCard birdDetail={birdDetails.filter(bird)[0]} />
+            </div>
+          )}
         </div>
       ) : (
         error !== "" && <p className="text-lg text-red-600">{error}</p>

@@ -4,19 +4,23 @@ import { useIsMounted } from "../../lib/hooks/use-is-mounted";
 import AudioPlayerCard from "../audioplayer-card";
 import dynamic from "next/dynamic";
 // import { Flex, Button } from "@chakar-ui/react";
+const WaveSurfer = dynamic(() => import("wavesurfer.js"), {
+  ssr: false,
+});
 const Waveform = () => {
   const waveform = useRef(null);
   const [isAudio, setAudio] = useState(false);
   const isMounted = useIsMounted();
-  var file;
+  var [file, setFile] = useState();
   const [currentPosition, setPosition] = useState<string>();
   let fileInput;
   const createWaveform = (e) => {
     setAudio(true);
-    file = e.target.files[0];
-    if (file) {
-      waveform.current.load(URL.createObjectURL(file));
+    const fileInside = e.target.files[0];
+    if (fileInside) {
+      waveform.current.load(URL.createObjectURL(fileInside));
       waveform.current.play();
+      setFile(fileInside);
       setPosition("Play");
     }
   };
@@ -29,7 +33,6 @@ const Waveform = () => {
       const WaveSurfer = (await import("wavesurfer.js")).default;
       if (!waveform.current) {
         // Create a wavesurfer object
-        debugger;
         waveform.current = WaveSurfer.create({
           barWidth: 3,
           barRadius: 3,
