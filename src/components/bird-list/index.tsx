@@ -5,10 +5,11 @@ import Spinybabbler from "../../assets/images/birds/spiny_babbler.jpg";
 import { birdDetails } from "../../constants/bird-details";
 import { useGetAllBirdDetailsQuery } from "@app/store/bird/api";
 import FullScreenLoader from "../ui/fullscreen-loader";
+import Loader from "../ui/loader";
 export default function BirdList() {
   const { data, isLoading } = useGetAllBirdDetailsQuery();
   return isLoading ? (
-    <FullScreenLoader></FullScreenLoader>
+    <Loader />
   ) : (
     <div
       className={`grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 3xl:grid-cols-5 4xl:grid-cols-6 gap-8 mt-4`}

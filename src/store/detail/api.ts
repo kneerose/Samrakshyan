@@ -9,14 +9,11 @@ export const responseApi = createApi({
   tagTypes: ["RESPONSE"], //autofetching
   baseQuery: fetchBaseQuery({ baseUrl: environments.API_URL }),
   endpoints: (builder) => ({
-    postPredictionResponse: builder.mutation<predictionDto, string>({
+    postPredictionResponse: builder.mutation<predictionDto, FormData>({
       query: (requestFileString) => ({
         url: apiRoutes.PREDICT,
         method: "POST",
-        headers: {
-          "content-type": "application/json",
-          accept: "application/json",
-        },
+        credentials: "include",
         body: requestFileString,
       }),
     }),

@@ -1,3 +1,4 @@
+import { predictionDto } from "@app/models/dtos/prediction";
 import CircularProgress from "@mui/material/CircularProgress";
 import { MutableRefObject, useEffect, useState } from "react";
 import { FaPause, FaPlay, FaStop, FaTimes } from "react-icons/fa";
@@ -28,6 +29,7 @@ export default function AudioPlayerCard({
 }: IPlayerCard) {
   const [value, setValue] = useState<string>();
   const [isLoading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const [postFileString] = usePostPredictionResponseMutation();
   function bird(birdDetail) {
     if (birdDetail.name === value) {
@@ -50,6 +52,25 @@ export default function AudioPlayerCard({
   const handleStop = () => {
     waveform.current.stop();
     setPosition("Stop");
+  };
+  const onClickHandler = async () => {
+    setLoading(true);
+    const formData = new FormData();
+    formData.append("file", file);
+    const res = await postFileString(formData);
+    if (res && "data" in res) {
+      setValue(res.data.Predicted);
+      setLoading(false);
+    } else if (res && "error" in res) {
+      setLoading(false);
+      setError(res.error["error"]);
+    } else {
+      setLoading(false);
+    }
+    // setTimeout(() => {
+    //   setValue(birdDetails[parseInt(`${Math.random() * 7}`)].name);
+    //   setLoading(false);
+    // }, 2000);
   };
 
   return (
@@ -126,69 +147,25 @@ export default function AudioPlayerCard({
           <Button
             text="Model I"
             className="bg-gray-400"
-            onClickHandler={async () => {
-              setLoading(true);
-              // const res = await postFileString(JSON.stringify(file));
-              // if (res && "data" in res) {
-              //   setValue(res.data.Predicted);
-              //   setLoading(false);
-              // }
-              setTimeout(() => {
-                setValue(birdDetails[parseInt(`${Math.random() * 7}`)].name);
-                setLoading(false);
-              }, 2000);
-            }}
+            onClickHandler={onClickHandler}
             icon={undefined}
           />
           <Button
             text="Model II"
             className="bg-gray-400"
-            onClickHandler={async () => {
-              setLoading(true);
-              // const res = await postFileString(JSON.stringify(file));
-              // if (res && "data" in res) {
-              //   setValue(res.data.Predicted);
-              //   setLoading(false);
-              // }
-              setTimeout(() => {
-                setValue(birdDetails[parseInt(`${Math.random() * 7}`)].name);
-                setLoading(false);
-              }, 2000);
-            }}
+            onClickHandler={onClickHandler}
             icon={undefined}
           />
           <Button
             text="Model III"
             className="bg-gray-400"
-            onClickHandler={async () => {
-              setLoading(true);
-              // const res = await postFileString(JSON.stringify(file));
-              // if (res && "data" in res) {
-              //   setValue(res.data.Predicted);
-              //   setLoading(false);
-              // }
-              setTimeout(() => {
-                setValue(birdDetails[parseInt(`${Math.random() * 7}`)].name);
-                setLoading(false);
-              }, 2000);
-            }}
+            onClickHandler={onClickHandler}
             icon={undefined}
           />
           <Button
             text="Model Ensemble"
             className="bg-gray-400"
-            onClickHandler={async () => {
-              setLoading(true);
-              // const res = await postFileString(JSON.stringify(file));
-              // if (res && "data" in res) {
-              //   setValue(res.data.Predicted);
-              //   setLoading(false);
-              // }
-              setTimeout(() => {
-                setValue(birdDetails[parseInt(`${Math.random() * 7}`)].name);
-                setLoading(false);
-              }, 2000);
-            }}
+            onClickHandler={onClickHandler}
             icon={undefined}
           />
         </div>
@@ -197,15 +174,17 @@ export default function AudioPlayerCard({
         <div className="flex pt-5 justify-center">
           <CircularProgress size={40} />
         </div>
-      ) : (
-        value && (
-          <div className="flex flex-col items-center space-y-6">
-            <p className=" pt-2 text-center">"Spiny Babbler" </p>
+      ) : value ? (
+        <div className="flex flex-col items-center space-y-6">
+          <p className=" pt-2 text-center">{value} </p>
+          {value !== "Unknown" && birdDetails.filter(bird).length !== 0 && (
             <div className="h-[400px] w-[300px]">
-              <BirdCard birdDetail={birdDetails[1]} />
+              <BirdCard birdDetail={birdDetails.filter(bird)[0]} />
             </div>
-          </div>
-        )
+          )}
+        </div>
+      ) : (
+        error !== "" && <p className="text-lg text-red-600">{error}</p>
       )}
     </div>
   );
