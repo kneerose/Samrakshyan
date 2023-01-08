@@ -5,6 +5,7 @@ import { createLogger } from "redux-logger";
 import { monitorReducerEnhancer } from "./enchancers";
 import { responseApi } from "./detail/api";
 import { birdApi } from "./bird/api";
+import birdslice from "./bird/birdSlice";
 const loggerMiddleware = createLogger();
 const middlewares = [
   loggerMiddleware,
@@ -14,6 +15,7 @@ const middlewares = [
 const reducers = {
   [responseApi.reducerPath]: responseApi.reducer,
   [birdApi.reducerPath]: birdApi.reducer,
+  [birdslice.reducerPath]: birdslice.reducer,
 };
 const combinedReducer = combineReducers<typeof reducers>(reducers);
 

@@ -33,7 +33,6 @@ const Waveform = () => {
       const WaveSurfer = (await import("wavesurfer.js")).default;
       if (!waveform.current) {
         // Create a wavesurfer object
-        debugger;
         waveform.current = WaveSurfer.create({
           barWidth: 3,
           barRadius: 3,

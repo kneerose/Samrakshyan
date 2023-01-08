@@ -26,6 +26,7 @@
     "react-redux": "^8.0.5",
     "react-use": "^17.4.0",
     "redux-logger": "^3.0.6",
+    "redux-persist": "^6.0.0",
     "remark-breaks": "^3.0.2",
     "wavesurfer.js": "^6.2.0"
   },

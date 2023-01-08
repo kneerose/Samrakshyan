@@ -60,7 +60,7 @@ import FullScreenLoader from "@app/components/ui/fullscreen-loader";
 // }
 export async function getServerSideProps(context) {
   const { id } = context.query;
-  const apiUrl = `${environments.API_URL}/${id}`;
+  const apiUrl = `${environments.API_URL}/items/id/${id}`;
   let birdDetail;
   try {
     const birdRes = (await fetch(apiUrl).catch((err: any) => err)) ?? null;
@@ -74,27 +74,6 @@ export async function getServerSideProps(context) {
 }
 
 const Bird = ({ birdDetail }) => {
-  // const router = useRouter();
-  // const [birdDetail, setBirdDetail] = useState(null);
-  // const [isLoading, setLoading] = useState(true);
-  // const { id } = router.query;
-  // if (id) {
-  //   const { data, isLoading } = useGetBirdByIdentifierQuery(id.toString());
-  //   setLoading(isLoading);
-  //   if (!isLoading) {
-  //     setBirdDetail(data);
-  //   }
-  // }
-  // const { data, isLoading } = useGetBirdByIdentifierQuery(id.toString());
-
-  debugger;
-  // const router = useRouter();
-  // const isMounted = useIsMounted();
-  // const { id } = router.query;
-
-  // debugger;
-  // const birdDetail = birdDetails;
-  // const { data } = useGetBirdByIdentifierQuery(id);
   return (
     <div className="w-full h-full">
       <div className="grid grid-cols-1 gap-16 md:grid-cols-2">
@@ -109,10 +88,11 @@ const Bird = ({ birdDetail }) => {
           <AudioRenderer
             audioSrc={`${environments.API_URL}/media?media_path=${birdDetail.audio_path}`}
           />
-          <ReactMarkdown
-            remarkPlugins={[remarkBreaks]}
+          <div
+            // remarkPlugins={[remarkBreaks]}
             className="my-3"
-            children={birdDetail.description}
+            dangerouslySetInnerHTML={{ __html: birdDetail.description }}
+            // children={birdDetail.description}
           />
         </div>
       </div>

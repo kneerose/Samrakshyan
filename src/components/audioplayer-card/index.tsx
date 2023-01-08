@@ -1,10 +1,15 @@
 import { predictionDto } from "@app/models/dtos/prediction";
+import { selectBirdList } from "@app/store/bird/selectors";
+import { useAppSelector } from "@app/store/hooks";
 import CircularProgress from "@mui/material/CircularProgress";
 import { MutableRefObject, useEffect, useState } from "react";
 import { FaPause, FaPlay, FaStop, FaTimes } from "react-icons/fa";
 import { birdDetails } from "../../constants/bird-details";
 import { BirdDetailDtos } from "../../models/dtos/bird-detail";
-import { usePostPredictionResponseMutation } from "../../store/detail/api";
+import {
+  responseApi,
+  usePostPredictionResponseMutation,
+} from "../../store/detail/api";
 import BirdCard from "../bird-card";
 import Button from "../ui/button/button";
 
@@ -30,9 +35,10 @@ export default function AudioPlayerCard({
   const [value, setValue] = useState<string>();
   const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const birdList = useAppSelector(selectBirdList);
   const [postFileString] = usePostPredictionResponseMutation();
-  function bird(birdDetail) {
-    if (birdDetail.name === value) {
+  function bird(birdDetail: BirdDetailDtos) {
+    if (birdDetail.bird_name.toLowerCase() === value.toLowerCase()) {
       return birdDetail;
     }
   }
@@ -177,11 +183,12 @@ export default function AudioPlayerCard({
       ) : value ? (
         <div className="flex flex-col items-center space-y-6">
           <p className=" pt-2 text-center">{value} </p>
-          {value !== "Unknown" && birdDetails.filter(bird).length !== 0 && (
-            <div className="h-[400px] w-[300px]">
-              <BirdCard birdDetail={birdDetails.filter(bird)[0]} />
-            </div>
-          )}
+          {value !== "Unknown" &&
+            birdList.birdList.filter(bird).length !== 0 && (
+              <div className="h-[400px] w-[300px]">
+                <BirdCard birdDetail={birdList.birdList.filter(bird)[0]} />
+              </div>
+            )}
         </div>
       ) : (
         error !== "" && <p className="text-lg text-red-600">{error}</p>
