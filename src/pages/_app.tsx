@@ -23,10 +23,6 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
     <>
       <Head>
         <title>संरक्षण</title>
-        <meta
-          http-equiv="Content-Security-Policy"
-          content="upgrade-insecure-requests"
-        />
         <link rel="shortcut icon" href="/favicon.ico" />
       </Head>
       <NextNProgress

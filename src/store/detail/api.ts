@@ -13,7 +13,7 @@ export const responseApi = createApi({
       query: (requestFileString) => ({
         url: "/files/",
         method: "POST",
-        credentials: "same-origin",
+        credentials: "omit",
         body: requestFileString,
       }),
     }),
