@@ -29,7 +29,7 @@ const nextConfig = {
     loader: "custom",
   },
   publicRuntimeConfig: {
-    API_URL: process.env.API_URL || http://localhost:8000,
+    API_URL: process.env.API_URL || "http://localhost:8000",
   },
   experimental: {
     newNextLinkBehavior: false,
