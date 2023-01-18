@@ -11,7 +11,7 @@ const withPWA = require("next-pwa")({
 });
 
 const nextConfig = {
-  // productionBrowserSourceMaps: true,
+  productionBrowserSourceMaps: true,
   compress: true,
   basePath: process.env.BASE_DEPLOY_PATH,
   // assetPrefix: process.env.BASE_DEPLOY_PATH,
