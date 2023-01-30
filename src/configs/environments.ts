@@ -6,6 +6,7 @@ if (config && config.publicRuntimeConfig) {
 }
 const environments = {
   API_URL: publicRuntimeConfig.API_URL,
+  DB_URL: publicRuntimeConfig.DB_URL,
 };
 
 export default environments;

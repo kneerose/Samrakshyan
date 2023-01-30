@@ -60,7 +60,7 @@ import FullScreenLoader from "@app/components/ui/fullscreen-loader";
 // }
 export async function getServerSideProps(context) {
   const { id } = context.query;
-  const apiUrl = `${environments.API_URL}/items/id/${id}`;
+  const apiUrl = `${environments.DB_URL}/items/id/${id}`;
   let birdDetail;
   try {
     const birdRes = (await fetch(apiUrl).catch((err: any) => err)) ?? null;

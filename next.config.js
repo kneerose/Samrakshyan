@@ -29,6 +29,7 @@ const nextConfig = {
     loader: "custom",
   },
   publicRuntimeConfig: {
+    DB_URL: process.env.DB_URL,
     API_URL: process.env.API_URL,
   },
   experimental: {
