@@ -1,43 +1,31 @@
-import Image from "next/image";
 import dynamic from "next/dynamic";
-import Bird from "../assets/images/banner.png";
 import { ArrowRightCircle } from "../components/icons/arrow-right-circle";
 import { useRouter } from "next/router";
 import BirdList from "../components/bird-list";
-import { customLoader } from "../utils/customLoaderUtils";
-const Waveform = dynamic(() => import("../components/wavesurfer/waveform"), {
-  ssr: false,
-});
+import ImageRenderer from "@app/components/media-render/image-render";
 export default function Homecontainer() {
   const router = useRouter();
   // console.log(data);
   return (
     <div className=" lg:space-y-28 sm:space-y-12">
-      <div className="flex lg:flex-row sm:flex-col w-full h-full lg:mt-24 sm:mt-5 lg:px-20 sm:px-4 justify-center  sm:space-y-16 lg:space-y-0 lg:space-x-32 sm:space-x-0 items-center">
-        <Image
-          alt="Bird"
-          src={Bird}
-          height={350}
-          width={350}
-          priority
-          loader={customLoader}
-        />
-        <div className="flex flex-col space-y-3 lg:text-start sm:text-center lg:w-5/12 sm:w-full">
+      <div className="flex lg:flex-row flex-col w-full h-full lg:my-24 my-8 lg:px-20 px-4 justify-center  space-y-10 lg:space-y-0 lg:space-x-32 space-x-0 items-center">
+        <div className="lg:h-[380px] lg:w-[300px] h-[210px] w-[167px]">
+          <ImageRenderer src="/images/banner.png" />
+        </div>
+        <div className="flex flex-col space-y-3 lg:text-start text-center lg:w-5/12 sm:w-full">
           <p className="lg:text-4xl sm:text-3xl  font-bold">Helping you</p>
           <p className="lg:text-3xl sm:text-2xl text-gray-800">
             to get information about recorded Bird sound.
           </p>
-          <div className="flex space-x-6 items-center lg:justify-start sm:justify-center">
+          <div className="flex space-x-6 items-center lg:justify-start justify-center">
             <p className="font-medium lg:text-3xl sm:text-2xl">Lets Begin </p>
             <ArrowRightCircle
-              className="h-14 w-14 cursor-pointer animate-bounce text-buttonColor"
+              className="lg:h-14 lg:w-14 h-8 w-8 cursor-pointer animate-bounce text-buttonColor"
               onClick={() => {
                 router.push("/predict");
               }}
             />
           </div>
-
-          {/* <Waveform /> */}
         </div>
       </div>
       <div className="space-y-10">

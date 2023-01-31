@@ -17,7 +17,7 @@ export default function BirdList() {
     dispatch(setBirdList({ birdList: data }));
   }
   return isLoading ? (
-    <Loader />
+    <FullScreenLoader />
   ) : (
     <div
       className={`grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 3xl:grid-cols-5 4xl:grid-cols-6 gap-8 mt-4`}

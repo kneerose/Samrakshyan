@@ -1,16 +1,17 @@
-import Button from "../ui/button/button";
+import IconButton from "../ui/button/iconbutton";
 import { useEffect, useRef, useState } from "react";
 import { useIsMounted } from "../../lib/hooks/use-is-mounted";
 import AudioPlayerCard from "../audioplayer-card";
-import dynamic from "next/dynamic";
+// import dynamic from "next/dynamic";
+import Button from "../ui/button/button";
 // import { Flex, Button } from "@chakar-ui/react";
-const WaveSurfer = dynamic(() => import("wavesurfer.js"), {
-  ssr: false,
-});
+// const WaveSurfer = dynamic(() => import("wavesurfer.js"), {
+//   ssr: false,
+// });
+
 const Waveform = () => {
   const waveform = useRef(null);
   const [isAudio, setAudio] = useState(false);
-  const isMounted = useIsMounted();
   var [file, setFile] = useState();
   const [currentPosition, setPosition] = useState<string>();
   let fileInput;
@@ -64,10 +65,9 @@ const Waveform = () => {
           onChange={createWaveform}
         />
         <Button
-          text="Import Sound"
-          onClickHandler={() => fileInput.click()}
+          children="Import Sound"
+          onClick={() => fileInput.click()}
           className="bg-buttonColor text-white"
-          icon={undefined}
         />
       </div>
       <AudioPlayerCard

@@ -5,7 +5,7 @@ import Layout from "../layout/_layout";
 const Predict = () => {
   return (
     <div>
-      <p className="font-medium text-center text-3xl">
+      <p className="font-medium text-center lg:text-3xl text-xl">
         Import sound to get information about recorded Bird sound.
       </p>
       <Waveform />

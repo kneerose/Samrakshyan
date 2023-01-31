@@ -1,18 +1,23 @@
 import React from "react";
 import cn from "classnames";
 
-export default function Button({ text, onClickHandler, icon, className }) {
+const Button: React.FC<React.ButtonHTMLAttributes<HTMLButtonElement>> = ({
+  children,
+  onClick,
+  className,
+}) => {
   return (
     <button
       type="button"
-      onClick={onClickHandler}
+      onClick={onClick}
       className={cn(
-        "flex rounded-xl items-center text-lg px-4 py-3",
+        "flex rounded-xl text-center lg:text-lg text-sm px-4 py-3",
         className
       )}
     >
-      <span> {icon}</span>
-      <p className="text-center">{text}</p>
+      {children}
     </button>
   );
-}
+};
+
+export default Button;

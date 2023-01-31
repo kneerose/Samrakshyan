@@ -9,55 +9,7 @@ import Layout from "../../layout/_layout";
 import { NextPageWithLayout } from "../../types";
 import { getDescriptionsList, getImage } from "../../utils/openai";
 import AudioRenderer from "../../components/media-render/audio-render";
-import { birdDetails } from "../../constants/bird-details";
-import { BirdDetailDtos } from "../../models/dtos/bird-detail";
-import { ReactMarkdown } from "react-markdown/lib/react-markdown";
-import remarkBreaks from "remark-breaks";
-import { useGetBirdByIdentifierQuery } from "@app/store/bird/api";
-import { useRouter } from "next/router";
-import { useIsMounted } from "@app/lib/hooks/use-is-mounted";
 import environments from "@app/configs/environments";
-import FullScreenLoader from "@app/components/ui/fullscreen-loader";
-
-// export const getStaticProps: GetStaticProps = async ({ params }) => {
-//   const id = params.id;
-
-//   // const birdDetail = birdDetail.filter(bird);
-//   // function bird(birdDetail) {
-//   //   if (birdDetail.id === id) {
-//   //     return birdDetail;
-//   //   }
-//   // }
-//   // let descriptions;
-//   // let image;
-//   // try {
-//   //   descriptions = await getDescriptionsList(id);
-//   // } catch (e) {}
-//   // try {
-//   //   image = await getImage(id);
-//   // } catch (e) {}
-//   // if (!isError) return { notFound: true };
-//   return { props: { id } };
-// };
-
-// export async function getStaticPaths() {
-//   const paths = birdDetails.map((birdDetail) => {
-//     return {
-//       params: {
-//         id: birdDetail.id,
-//       },
-//     };
-//   });
-//   console.log("paths", paths);
-//   return {
-//     paths,
-//     fallback: false, // can also be true or 'blocking'
-//   };
-// }
-
-// interface IBirdProps {
-//   birdDetail: Array<BirdDetailDtos>;
-// }
 export async function getServerSideProps(context) {
   const { id } = context.query;
   const apiUrl = `${environments.DB_URL}/items/id/${id}`;
@@ -76,21 +28,22 @@ export async function getServerSideProps(context) {
 const Bird = ({ birdDetail }) => {
   return (
     <div className="w-full h-full">
-      <div className="grid grid-cols-1 gap-16 md:grid-cols-2">
+      <div className="grid grid-cols-1 md:gap-16 gap-4 md:grid-cols-2">
         <div className=" overflow-hidden aspect-square rounded-lg">
           <ImageRenderer
-            imageSrc={`${environments.API_URL}/media?media_path=${birdDetail.image_path}`}
-            isCardView={false}
+            src={`${environments.DB_URL}/media?media_path=${birdDetail.image_path}`}
           />
         </div>
-        <div className="mt-2 space-y-8">
-          <p className="text-3xl font-medium">{birdDetail.bird_name}</p>
+        <div className="mt-2 lg:space-y-8 space-y-4">
+          <p className="lg:text-3xl text-xl font-medium">
+            {birdDetail.bird_name}
+          </p>
           <AudioRenderer
-            audioSrc={`${environments.API_URL}/media?media_path=${birdDetail.audio_path}`}
+            audioSrc={`${environments.DB_URL}/media?media_path=${birdDetail.audio_path}`}
           />
           <div
             // remarkPlugins={[remarkBreaks]}
-            className="my-3"
+            className="my-3 lg:text-lg text-sm "
             dangerouslySetInnerHTML={{ __html: birdDetail.description }}
             // children={birdDetail.description}
           />

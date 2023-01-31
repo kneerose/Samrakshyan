@@ -39,8 +39,7 @@ export default function BirdCard({ birdDetail }: IBirdCardProps) {
         }}
       >
         <ImageRenderer
-          isCardView
-          imageSrc={`${environments.DB_URL}/media?media_path=${birdDetail.image_path}`}
+          src={`${environments.DB_URL}/media?media_path=${birdDetail.image_path}`}
         />
       </div>
       <div className=" flex bg-white absolute bottom-0 items-center justify-between px-6 left-0 space-x-4 right-0 text-center">
