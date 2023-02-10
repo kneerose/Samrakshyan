@@ -2,6 +2,7 @@ import { combineReducers, configureStore, Reducer } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
 import { RESET_STATE_ACTION_TYPE } from "./actions/resetState";
 import { createLogger } from "redux-logger";
+import { persistStore } from "redux-persist";
 import { monitorReducerEnhancer } from "./enchancers";
 import { responseApi } from "./detail/api";
 import { birdApi } from "./bird/api";
@@ -50,5 +51,6 @@ export const store = configureStore({
 
 export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof combinedReducer>;
+export const persistor = persistStore(store);
 
 setupListeners(store.dispatch);

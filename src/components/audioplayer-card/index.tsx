@@ -38,9 +38,17 @@ export default function AudioPlayerCard({
   const [error, setError] = useState("");
   const birdList = useAppSelector(selectBirdList);
   const [postFileString] = usePostPredictionResponseMutation();
-  function bird(birdDetail: BirdDetailDtos) {
+
+  function getBirdName(value) {
     const birdName = value.replace("/n ", "");
-    if (birdDetail.bird_name.toLowerCase() === birdName.trim().toLowerCase()) {
+    return birdName.replaceAll("'", "");
+  }
+  function bird(birdDetail: BirdDetailDtos) {
+    if (
+      value &&
+      birdDetail.bird_name.toLowerCase() ===
+        getBirdName(value).trim().toLowerCase()
+    ) {
       return birdDetail;
     }
   }
@@ -80,6 +88,8 @@ export default function AudioPlayerCard({
       setError("api issue");
     }
   };
+  console.log(birdList.birdList);
+  console.log(birdList.birdList.filter(bird));
 
   const getPredictedResult = () => {
     return isLoading ? (
@@ -88,7 +98,7 @@ export default function AudioPlayerCard({
       </div>
     ) : value ? (
       <div className="flex flex-col items-center space-y-6">
-        <p className=" pt-2 text-center">{value.replace("/n ", "")} </p>
+        <p className=" pt-2 text-center">{getBirdName(value)} </p>
         {value !== "Unknown" && birdList.birdList.filter(bird).length !== 0 && (
           <div className="h-[400px] w-[300px]">
             <BirdCard birdDetail={birdList.birdList.filter(bird)[0]} />
@@ -196,7 +206,7 @@ export default function AudioPlayerCard({
             />
           </div>
         )}
-        {getPredictedResult()}
+        {isAudio && getPredictedResult()}
       </>
     </div>
   );
