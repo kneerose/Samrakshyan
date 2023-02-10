@@ -13,7 +13,6 @@ export const responseApi = createApi({
       query: (requestFileString) => ({
         url: apiRoutes.PREDICT,
         method: "POST",
-        credentials: "include",
         body: requestFileString,
       }),
     }),
