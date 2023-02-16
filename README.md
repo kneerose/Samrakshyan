@@ -1,27 +1,18 @@
-# Next.js + Tailwind CSS Example
+# Samrakshyan
+संरक्षण: An Endangered Birds Recognition Portal
 
-This example shows how to use [Tailwind CSS](https://tailwindcss.com/) [(v3.0)](https://tailwindcss.com/blog/tailwindcss-v3) with Next.js. It follows the steps outlined in the official [Tailwind docs](https://tailwindcss.com/docs/guides/nextjs).
+Home to around 11,000 species of fauna, Nepal is a country rich in biodiversity. Among them about 900 species are birds. Due to various reasons like encroachment of their natural habitats, and rampage killing many of these species are facing the threat of extinction. Around 38 endangered birds in Nepal need conservation. The growing advancement in machine learning can support the preservation of those species and monitoring the status of birds in the ecosystem can assist researchers of Nepal’s biodiversity in planning different strategies for their preservation. We developed an endangered bird classification system to identify bird calls from the audio data set collected from Xeno-canto.org. This was achieved by extracting the spectral characteristics of the audio signal through Mel-Spectrogram and MFCC (Mel-Frequency Cepstral Coefficients) which generated the spectrogram. It was fed into the deep learning model architecture like efficientNet which is based on a convolutional neural network. A genetic algorithm was used for hyper-parameter optimization. Our best results showed an F1-Score of 79\% for 41 species of birds. This has significant implications for the field of biodiversity conservation, as it allows researchers to monitor and protect threatened and endangered species.
 
-## Deploy your own
+# Output
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) or preview live with [StackBlitz](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-tailwindcss)
+## Home Page
+![homepage](https://user-images.githubusercontent.com/49801844/219280103-6bf4b7a2-dfab-43b0-a08f-7af57db57a00.jpg)
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-tailwindcss&project-name=with-tailwindcss&repository-name=with-tailwindcss)
 
-## How to use
+## Prediction
+![prediction_page](https://user-images.githubusercontent.com/49801844/219280255-b43cc603-0acc-46b5-a823-c12bc22d82c2.jpg)
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
 
-```bash
-npx create-next-app --example with-tailwindcss with-tailwindcss-app
-```
-
-```bash
-yarn create next-app --example with-tailwindcss with-tailwindcss-app
-```
-
-```bash
-pnpm create next-app --example with-tailwindcss with-tailwindcss-app
-```
-
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+## Bird Details
+![bird_detail_page](https://user-images.githubusercontent.com/49801844/219280294-0fabaad8-b420-4140-89b8-b73b5df9ce89.png)
+22d82c2.jpg)
