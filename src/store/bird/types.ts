@@ -1,1 +1,1 @@
-export const BIRD_REDUCER_KEY = "birdApi";
+export const BIRD_REDUCER_KEY = 'birdApi';
