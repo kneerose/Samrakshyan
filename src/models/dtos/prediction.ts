@@ -1,3 +1,3 @@
-export interface predictionDto{
-    Predicted: string
+export interface predictionDto {
+  Predicted: string;
 }
